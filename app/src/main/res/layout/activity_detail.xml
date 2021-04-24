@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.train.trainandroid2021.repository.model.Article" />
+
+        <variable
+            name="viewModel"
+            type="com.train.trainandroid2021.ui.main.MainViewModel" />
+
+        <variable
+            name="clickListener"
+            type="com.train.trainandroid2021.ui.main.DetailActivity.DetailActivityListenner" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8"
+            android:background="@drawable/edge_normal_background"
+            android:padding="@dimen/margin_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> clickListener.onClickWeb(data.url)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setImageUrl="@{data.urlToImage}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/edge_primarydark_background"
+                android:lines="1"
+                android:padding="@dimen/margin_8"
+                android:text="@{data.publishedAt}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_middle"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/ivNews"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="22 Apr 2021" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:maxLines="2"
+                android:padding="@dimen/margin_4"
+                android:text="@{data.title}"
+                android:textSize="@dimen/text_middle"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="TITLE" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:padding="@dimen/margin_4"
+                android:text="@{data.description}"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvDetail"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:gravity="right"
+                android:maxLines="2"
+                android:padding="@dimen/margin_4"
+                android:text="@{data.author}"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="author : " />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edge_primarydark_background"
+            android:padding="@dimen/margin_16"
+            android:translationX="-8dp"
+            android:translationY="-8dp"
+            android:onClick="@{() -> clickListener.onClickBack()}"
+            app:layout_constraintStart_toStartOf="@id/layoutNews"
+            app:layout_constraintTop_toTopOf="@id/layoutNews">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edge_primarydark_background"
+            android:padding="@dimen/margin_16"
+            android:translationX="8dp"
+            android:translationY="-8dp"
+            app:layout_constraintEnd_toEndOf="@id/layoutNews"
+            app:layout_constraintTop_toTopOf="@id/layoutNews">
+
+            <ImageView
+                android:id="@+id/ivBookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_bookmark_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
